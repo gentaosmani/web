@@ -1,14 +1,44 @@
-<?php 
-session_start();
-?>
-
 <?php
-if(isset($_SESSION['name'])):?>
+    require './controller/UserController.php';
 
+    $user = new UserController;
+    $pacienti = $user->all();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+  
+    .slide2:hover, .slide2:focus {
+      box-shadow: inset 150px 0 0 0 white;
+    }
 
+    .slide2 {
+      color:white;
+      transition: 0.3s;
+    }
+    .slide2:hover, .slide2:focus {
+      border-color: #24daac;
+      color: #24daac;
+    }
+
+    .slide2 {
+      background: #24daac;
+      border: 5px solid #24daac;
+      padding: 0.4em 1.8em;
+      font-weight: bolder;
+      border-radius: 20px;
+      font-size: 15px;
+      text-decoration:none;
+      width: 120px;
+      margin-left: 70px;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+
+</style>
 <link rel="stylesheet" type="text/css" href="css/loginFormDesign.css">
 <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,11 +56,16 @@ if(isset($_SESSION['name'])):?>
   <div class="first-cont">
 <header>
 <div class="topnav" id="myTopnav">
-  <a href="#"><img class="responsive" src="gallery/health-clipart-png-8.png" width="185px" style="margin-top: -10px; margin-right: 50px"></a>
+  <a href="#"><img class="responsive" src="css/gallery/health-clipart-png-8.png" width="185px" style="margin-top: -10px; margin-right: 50px"></a>
 
   <!--<a href="#" style=" font-weight: bold; padding-bottom: 25px">E-Health system</a>-->
   <a href="#" class="active">Home</a>
   <a href="MyMedicalData.php">My medical data</a>
+    <?php
+    $isAdmin=$_SESSION['is_admin'];
+     if($isAdmin == "1"): ?>
+  <a href="admin-mode.php">Admin mode</a>
+  <?php endif; ?>
   <a href="logout.php">Log out</a>
   <a href="contactUs.php">Contact</a>
   <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -53,8 +88,10 @@ function myFunction() {
 <div style="display: inline-flex;">
   
 <div style="width: 50%">
-<h1 style="font-size:3.8vw; color: white; margin-top: 10vw; margin-left:70px">WELCOME, <a href="#"><?php echo $_SESSION['name'] ?></a></h1>
-<p style=" color: white; margin-left:70px">eHealth is the use of information and communication technologies (ICT) for health. The eHealth unit works with partners at the global, regional and country level to promote and strengthen the use of ICT in health development, from applications in the field to global governance.</p>
+<h1 style="font-size:3.8vw; color: white; margin-top: 10vw; margin-left:70px">
+        Welcome, <?php echo $_SESSION['name'];?>
+  </h1>
+<p style=" color: white; margin-left:70px;">eHealth is the use of information and communication technologies (ICT) for health. The eHealth unit works with partners at the global, regional and country level to promote and strengthen the use of ICT in health development, from applications in the field to global governance.</p>
   <a href="#video" class="slide2">LEARN MORE</a>
   <script>history.scrollRestoration = "manual"</script>
 </div>
@@ -70,7 +107,7 @@ function myFunction() {
 
 <div style="display: flex; justify-content:center;">
           <video  class="responsive" width="800" height="450" controls style="border:2px solid #24daac;border-radius: 20px"> 
-          <source src="gallery/video.mp4" type="video/mp4" >
+          <source src="css/gallery/video.mp4" type="video/mp4" >
           </video>
       </div>
 </div>
