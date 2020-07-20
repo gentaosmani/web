@@ -33,7 +33,7 @@
      
      	<div  style="display: block; margin-top: -40px">
        <div class="d1v-con-content" style="text-align: center; font-size: 50px; color: white; font-weight: bolder">
-        	<p><?php echo $user['name'];?></p>
+        	<p><?php echo $user['name'];?></p> 
         </div>
         <div style="font-size:17px; color: white; font-weight: bolder ; margin-top: -50px">
         	<p>My medical data</p>
